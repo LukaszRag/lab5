@@ -1,0 +1,86 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# s=pd.Series([10,12,14,8], index=['a','b','c','d'])
+#
+# data={'Kraj':['Belgia','Indie','Polska'],'Stolica':['Bruksela','New Delhi','Warszawa'],'Populacja':[1118123,123123123,3241343]}
+# df2=pd.DataFrame(data)
+# print(df2)
+
+df3=pd.read_csv('dane.csv', header=0,sep=';',decimal=".")
+
+grupa=df3.groupby('Imię i nazwisko').agg({'Wartość zamówienia':['sum']})
+print(grupa)
+grupa.plot(kind='pie',subplots=True,autopct='%.2f %%',fontsize=20,colors=['red','green'])
+plt.legend(loc='upper left')
+plt.show()
+
+seria=pd.Series(np.random.randn(1000))
+seria=seria.cumsum()
+
+seria.plot()
+plt.show()
+
+# print(df3)
+# df3.to_csv('dane2.csv',index=False)
+# #openpyxl - biblioteka do xlsx
+# xlsx = pd.ExcelFile('imiona.xlsx')
+# df=pd.read_excel(xlsx,header=0)
+# print(df)
+# df.to_excel('imiona2.xlsx', sheet_name='dane')
+
+# print(df[0:1])
+# print(df2['Kraj'])
+# print(df2.Kraj)
+
+# print(df.iloc[[0],[0]]) #wyciaganie elementu
+# print(df.head(10)) #pokazuje 10 pierwszych wierszy
+# print(df.tail(10)) #pokazuje 10 ostatnich wierszy
+# print(s)
+# print(s(s>8)) #wyswietlanie danych z serii przy okreslonym warunku
+# print([s(s>8) & (s<13)])
+# print(s.where(s>8))
+# print(s.where(s>10), 'warunek niespelniony') zwraca kopie serii jak cos z nia robi a nie robi na serii
+# seria=s.copy()
+# seria.where(s>10, 'warunek niespelniony', inplace=True)
+# print(seria)
+#
+# print(df2[df2['Populacja']>12000000])
+# s['e']=14 # edytowanie/dodawanie wartosci istniejacych/nowych indeksow
+# print(s)
+#
+# df2.loc[3]='nowy element' #dodawanie nowego elementu
+# print(df2)
+#
+# df2.loc[4]=['Brazylia','Brasilia',123123123]
+# print(df2)
+
+
+# new_df2=df2.drop([3])
+# print(df2)
+# print(new_df2)
+# df2.drop([3], inplace=True)
+# print(df2)
+# df2 ["Kontynent"]=["Europa",'Azja','Europa',"Ameryka Poludniowa"]
+# print(df2)
+#
+# print((df2.sort_values(by='Kraj')))
+# new=df2.sort_values(by='Kraj',inplace=True)
+# print(new)
+
+# grupa=df2.groupby(by="Kontynent").agg({'Populacja': ['sum']})
+# print(grupa.get_group("Europa"))
+# print(grupa.agg({'Populacja':['sum']}))
+
+# grupa.plot(kind='bar',xlabel='Kontynent',ylabel="Populacja",title='Populacja w kontynencie', rot=0)
+# plt.show()
+
+# wykres=grupa.plot.bar()
+# wykres.set_xlabel('Kontynent')
+# wykres.set_ylabel('Populacja w mld')
+# wykres.tick_params(axis='x', labelrotation=0)
+# wykres.set_title("Populacja w kontynencie")
+# plt.savefig('plot1.png')
+
+
